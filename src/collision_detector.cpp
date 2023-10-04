@@ -15,10 +15,15 @@ namespace rrt_planner {
 
     bool CollisionDetector::inFreeSpace(const double* world_pos) {
 
-        /**************************
-         * Implement your code here
-         **************************/
+        // Convert world coordinates to map coordinates; return false if the world coordinates are out of the costmap
+        unsigned int mx, my;
+        if ( !costmap_->worldToMap(world_pos[0], world_pos[1], mx, my) ) return false;
 
+        // Get the cost of the cell (mx, my); return false if the cost is LETHAL_OBSTACLE, INSCRIBED_INFLATED_OBSTACLE or NO_INFORMATION
+        unsigned char cost = costmap_->getCost(mx, my);
+        if (cost == costmap_2d::LETHAL_OBSTACLE || cost == costmap_2d::INSCRIBED_INFLATED_OBSTACLE || cost == costmap_2d::NO_INFORMATION) return false;
+
+        return true;
     }
 
     bool CollisionDetector::obstacleBetween(const double* point_a, const double* point_b) {
