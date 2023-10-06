@@ -109,8 +109,18 @@ namespace rrt_planner {
          * Implement your code here
          **************************/
 
-        candidate_point_[0] = // ... ;
-        candidate_point_[1] = // ... ;
+        double dist = computeDistance(point_nearest, point_rand);
+
+        // if dist is less than step, then candidate point is the random point itself 
+        if (dist <= params_.step) {
+            candidate_point_[0] = point_rand[0];
+            candidate_point_[1] = point_rand[1];
+        }
+        // else candidate point is the point on the line joining nearest point and random point at a distance of step 
+        else {
+            candidate_point_[0] = point_nearest[0] + params_.step * (point_rand[0] - point_nearest[0]) / dist;
+            candidate_point_[1] = point_nearest[1] + params_.step * (point_rand[1] - point_nearest[1]) / dist;
+        }
 
         return candidate_point_;
     }
