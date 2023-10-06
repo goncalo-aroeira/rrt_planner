@@ -76,12 +76,16 @@ namespace rrt_planner {
     }
 
     void RRTPlanner::createNewNode(const double* pos, int parent_node_id) {
-
-        Node new_node;
-
         /**************************
          * Implement your code here
          **************************/
+
+        Node new_node;
+
+        new_node.pos[0] = pos[0];
+        new_node.pos[1] = pos[1];
+        new_node.node_id = nodes_.size();
+        new_node.parent_id = parent_node_id;
 
         nodes_.emplace_back(new_node);
         
