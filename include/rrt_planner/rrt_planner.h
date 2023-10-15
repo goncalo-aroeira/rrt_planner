@@ -32,6 +32,8 @@ namespace rrt_planner {
              */
             double *sampleRandomPoint();
 
+            double computePathLength();
+
             /**
              * @brief Get the index of the nearest node around the new random point
              * @param point Random pointed sampled
@@ -87,6 +89,7 @@ namespace rrt_planner {
                 rrt_params params_;
                 CollisionDetector collision_dect_;
                 RandomDoubleGenerator random_double_x, random_double_y;
+                double prev_path_length = 0;
 
     };
 
