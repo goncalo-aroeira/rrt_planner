@@ -16,8 +16,8 @@
 
   <!-- AMCL -->
   <include file="$(find turtlebot3_navigation)/launch/amcl.launch">
-    <arg name="initial_pose_x" default="0.0"/>
-    <arg name="initial_pose_y" default="0.0"/>
+    <arg name="initial_pose_x" default="-2.0"/>
+    <arg name="initial_pose_y" default="-0.5"/>
     <arg name="initial_pose_a" default="0.0"/>
   </include>
 
@@ -27,12 +27,12 @@
     <param name="base_global_planner" value="rrt_planner/RRTPlannerROS"/>
     <rosparam file="$(find rrt_planner)/config/rrt_planner.yaml" command="load"/>
 
-    <rosparam file="/home/goncalo/catkin_ws/src/rrt_planner/config/costmap_common_params_waffle_pi.yaml" command="load" ns="global_costmap" />
-    <rosparam file="/home/goncalo/catkin_ws/src/rrt_planner/config/costmap_common_params_waffle_pi.yaml" command="load" ns="local_costmap" />
-    <rosparam file="/home/goncalo/catkin_ws/src/rrt_planner/config/local_costmap_params.yaml" command="load" />
-    <rosparam file="/home/goncalo/catkin_ws/src/rrt_planner/config/global_costmap_params.yaml" command="load" />
-    <rosparam file="/home/goncalo/catkin_ws/src/rrt_planner/config/move_base_params.yaml" command="load" />
-    <rosparam file="/home/goncalo/catkin_ws/src/rrt_planner/config/dwa_local_planner_params_waffle_pi.yaml" command="load" />
+    <rosparam file="/home/francisco/catkin_ws/src/rrt_planner/config/costmap_common_params_waffle_pi.yaml" command="load" ns="global_costmap" />
+    <rosparam file="/home/francisco/catkin_ws/src/rrt_planner/config/costmap_common_params_waffle_pi.yaml" command="load" ns="local_costmap" />
+    <rosparam file="/home/francisco/catkin_ws/src/rrt_planner/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="/home/francisco/catkin_ws/src/rrt_planner/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="/home/francisco/catkin_ws/src/rrt_planner/config/move_base_params.yaml" command="load" />
+    <rosparam file="/home/francisco/catkin_ws/src/rrt_planner/config/dwa_local_planner_params_waffle_pi.yaml" command="load" />
 
     <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)"/>
 

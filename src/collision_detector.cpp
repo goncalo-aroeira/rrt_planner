@@ -21,7 +21,9 @@ namespace rrt_planner {
 
         // Get the cost of the cell (mx, my); return false if the cost is LETHAL_OBSTACLE, INSCRIBED_INFLATED_OBSTACLE or NO_INFORMATION
         unsigned char cost = costmap_->getCost(mx, my);
-        if (cost == costmap_2d::LETHAL_OBSTACLE || cost == costmap_2d::INSCRIBED_INFLATED_OBSTACLE || cost == costmap_2d::NO_INFORMATION) return false;
+        if (cost == costmap_2d::LETHAL_OBSTACLE || cost == costmap_2d::INSCRIBED_INFLATED_OBSTACLE || cost == costmap_2d::NO_INFORMATION){
+            return false;
+        } 
 
         return true;
     }

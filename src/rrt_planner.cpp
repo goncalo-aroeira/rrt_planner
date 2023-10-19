@@ -49,11 +49,11 @@ namespace rrt_planner {
                     //mesure path length
                     
                     double path_length = computePathLength();
-                    if (path_length < prev_path_length || prev_path_length == 0) {
+                    /*if (path_length < prev_path_length || prev_path_length == 0) {
                         prev_path_length = path_length;
-                        std::cout << "aaaaaa" << path_length << std::endl;
                         return true;
-                    }
+                    }*/
+                    return true;
                 
                 }
             
@@ -125,7 +125,7 @@ namespace rrt_planner {
         double random_prob = random_double_x.generate();
 
         // Probability of sampling a point near the goal (50%)
-        double near_goal_probability = 0;
+        double near_goal_probability = 0.5;
 
         if (random_prob < near_goal_probability) {
             // Sample a point near the goal
@@ -154,15 +154,28 @@ namespace rrt_planner {
 
         double dist = computeDistance(point_nearest, point_rand);
 
+        double step = params_.step;
+
+        double dist2 = computeDistance(goal_, point_nearest);
+
+        
+        if (dist2 + 0.3 > step){
+            
+            step = dist2 * 0.60 ;
+        }
+       
+        
+        
+       
         // if dist is less than step, then candidate point is the random point itself 
-        if (dist <= params_.step) {
+        if (dist <= step) {
             candidate_point_[0] = point_rand[0];
             candidate_point_[1] = point_rand[1];
         }
         // else candidate point is the point on the line joining nearest point and random point at a distance of step 
         else {
-            candidate_point_[0] = point_nearest[0] + params_.step * (point_rand[0] - point_nearest[0]) / dist;
-            candidate_point_[1] = point_nearest[1] + params_.step * (point_rand[1] - point_nearest[1]) / dist;
+            candidate_point_[0] = point_nearest[0] + step * (point_rand[0] - point_nearest[0]) / dist;
+            candidate_point_[1] = point_nearest[1] + step * (point_rand[1] - point_nearest[1]) / dist;
         }
 
         return candidate_point_;
