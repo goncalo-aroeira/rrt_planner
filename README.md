@@ -54,3 +54,84 @@ None.
 
 ### Services
 None.
+
+
+### Our Project
+
+**Robot Localization, Mapping, and Path Planning - IST 2023/24**
+
+This repository contains the implementation of a robotics project focusing on localization, mapping, and path planning, developed for the Mobile Robotics course at Instituto Superior Técnico (IST). The project explores key algorithms for self-localization, map creation, and autonomous navigation using a TurtleBot3 Waffle Pi robot.
+
+## **Project Overview**
+Robotic localization, mapping, and path planning are fundamental for autonomous navigation. This project leverages probabilistic filtering techniques, mapping algorithms, and motion planning strategies to enhance robotic autonomy in unknown environments.
+
+## **Key Features**
+### **Mini-Project 1: Localization and Mapping**
+- **Extended Kalman Filter (EKF)**:
+  - Used for state estimation based on noisy odometry and IMU sensor data.
+  - Improved localization accuracy through recursive filtering.
+- **GMapping Algorithm (SLAM)**:
+  - Constructs occupancy grid maps from LiDAR sensor data.
+  - Optimized mapping parameters for noise reduction and enhanced feature representation.
+- **Adaptive Monte Carlo Localization (AMCL)**:
+  - Particle filter-based localization using known maps.
+  - Dynamic adaptation of particle count based on environmental uncertainty.
+
+### **Mini-Project 2: Path Planning**
+- **Global and Local Planning**:
+  - Implemented **Rapidly Exploring Random Trees (RRT)** for global path planning.
+  - Used **Dynamic Window Approach (DWA)** for local obstacle avoidance.
+- **Optimization Strategies**:
+  - Adaptive step-size for more efficient RRT paths.
+  - Collision detection tuning based on costmap scaling factors.
+  - Fine-tuned cost parameters to ensure safe and smooth navigation.
+
+## **Installation & Setup**
+To set up the project:
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/yourusername/robot-localization.git
+   cd robot-localization
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   sudo apt install ros-noetic-navigation ros-noetic-slam-gmapping
+   pip install numpy matplotlib
+   ```
+
+3. **Run the Simulation**
+   ```bash
+   roslaunch turtlebot3_gazebo turtlebot3_world.launch
+   roslaunch turtlebot3_navigation turtlebot3_navigation.launch
+   ```
+
+4. **Execute Path Planning Algorithm**
+   ```bash
+   python rrt_path_planning.py
+   ```
+
+## **Results Summary**
+- **Localization Accuracy**:
+  - EKF reduced odometry drift, improving positional accuracy.
+  - AMCL provided robust localization with minimal computational overhead.
+- **Mapping Performance**:
+  - GMapping successfully created detailed occupancy grids.
+  - Tuned kernel size and particle count improved feature extraction.
+- **Path Planning Success**:
+  - RRT efficiently generated collision-free paths.
+  - Adaptive planning enhanced path smoothness and reduced computational cost.
+- **Real-Robot Testing**:
+  - Successfully navigated obstacles and dynamically recalculated paths.
+  - Adjusted inflation radius and cost scaling ensured safe maneuvering.
+
+## **Challenges & Future Improvements**
+- Further optimization of motion models for dynamic environments.
+- Integration of reinforcement learning for adaptive path planning.
+- Improved sensor fusion techniques for better map consistency.
+
+## **Contributors**
+- **Francisco Gil Mata**
+- **Gonçalo Aroeira Gonçalves**
+
